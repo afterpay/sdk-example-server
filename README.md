@@ -1,5 +1,7 @@
 # Afterpay SDK Example Server
 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
 A server to power the [iOS][ios-example] and [Android][android-example] SDK example projects.
 
 ## Contents
