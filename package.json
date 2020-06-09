@@ -1,0 +1,28 @@
+{
+  "name": "afterpay-example-server",
+  "version": "1.0.0",
+  "description": "Server to power the iOS and Android SDK example applications",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ittybittyapps/afterpay-example-server"
+  },
+  "author": "Afterpay",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ittybittyapps/afterpay-example-server/issues"
+  },
+  "homepage": "https://github.com/ittybittyapps/afterpay-example-server#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.6",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
