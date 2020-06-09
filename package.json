@@ -4,8 +4,8 @@
   "description": "Server to power the iOS and Android SDK example applications",
   "main": "dist/server.js",
   "scripts": {
-    "format": "prettier --write src",
-    "lint": "eslint . --ext .js,.ts",
+    "fix": "eslint --fix .",
+    "lint": "eslint .",
     "build": "tsc",
     "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -41,7 +41,8 @@
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
     "plugins": [
-      "@typescript-eslint"
+      "@typescript-eslint",
+      "prettier"
     ],
     "extends": [
       "eslint:recommended",
