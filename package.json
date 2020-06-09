@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ittybittyapps/afterpay-example-server/issues"
   },
-  "homepage": "https://github.com/ittybittyapps/afterpay-example-server#readme"
+  "homepage": "https://github.com/ittybittyapps/afterpay-example-server#readme",
+  "devDependencies": {
+    "typescript": "^3.9.5"
+  }
 }
