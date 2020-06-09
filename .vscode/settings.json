@@ -4,5 +4,23 @@
     "**/bower_components": true,
     "**/dist": true,
     "**/coverage": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "tslint.enable": false,
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.codeActionsOnSaveTimeout": 2000,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
   }
 }
