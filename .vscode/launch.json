@@ -13,7 +13,8 @@
       "port": 9229,
       "skipFiles": [
         "<node_internals>/**"
-      ]
+      ],
+      "args": ["${env:AFTERPAY_MERCHANT_ID}", "${env:AFTERPAY_SECRET_KEY}"]
     },
     {
       "type": "node",
