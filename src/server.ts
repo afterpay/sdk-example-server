@@ -19,7 +19,7 @@ const sharedOptions: https.RequestOptions = {
 
 const app = express();
 
-app.get('/', (req, res) => {
+app.get('/configuration', (req, res) => {
   const options = sharedOptions;
   options.path = '/v2/configuration';
 
@@ -34,6 +34,52 @@ app.get('/', (req, res) => {
   });
 
   configReq.end();
+});
+
+app.get('/checkouts', (req, res) => {
+  const body = {
+    amount: {
+      amount: '63.00',
+      currency: 'USD'
+    },
+    consumer: {
+      givenNames: 'Joe',
+      surname: 'Consumer',
+      email: 'test@afterpay.com'
+    },
+    merchant: {
+      redirectConfirmUrl: 'https://www.afterpay-merchant.com/confirm',
+      redirectCancelUrl: 'https://www.afterpay-merchant.com/cancel'
+    }
+  };
+
+  const bodyData = JSON.stringify(body);
+
+  const options = sharedOptions;
+  options.path = '/v2/checkouts';
+  options.method = 'POST';
+  options.headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Content-Length': Buffer.byteLength(bodyData)
+  };
+
+  const checkoutsReq = https.request(options, (configRes) => {
+    configRes.on('data', (d) => {
+      const responseObject = JSON.parse(d);
+      res.json({
+        url: responseObject.redirectCheckoutUrl
+      });
+    });
+  });
+
+  checkoutsReq.on('error', (e) => {
+    console.log(e);
+  });
+
+  checkoutsReq.write(bodyData);
+
+  checkoutsReq.end();
 });
 
 const port = 3000;
