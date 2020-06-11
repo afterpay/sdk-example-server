@@ -4,14 +4,13 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch via NPM",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run-script",
-        "debug"
-      ],
-      "port": 9229,
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/src/server.ts",
+      "preLaunchTask": "tsc: build - tsconfig.json",
       "envFile": "${workspaceFolder}/.env",
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ],
       "skipFiles": [
         "<node_internals>/**"
       ]
