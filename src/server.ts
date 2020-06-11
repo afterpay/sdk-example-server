@@ -1,6 +1,5 @@
 import express from 'express';
 import https from 'https';
-import { RequestOptions } from 'https';
 
 const merchantId = process.env.AFTERPAY_MERCHANT_ID;
 const secretKey = process.env.AFTERPAY_SECRET_KEY;
@@ -13,7 +12,7 @@ if (merchantId === undefined || secretKey === undefined) {
   process.exit(1);
 }
 
-const sharedOptions: RequestOptions = {
+const sharedOptions: https.RequestOptions = {
   auth: [merchantId, secretKey].join(':'),
   hostname: 'api.us-sandbox.afterpay.com'
 };
