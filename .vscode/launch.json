@@ -11,10 +11,10 @@
         "debug"
       ],
       "port": 9229,
+      "envFile": "${workspaceFolder}/.env",
       "skipFiles": [
         "<node_internals>/**"
-      ],
-      "args": ["${env:AFTERPAY_MERCHANT_ID}", "${env:AFTERPAY_SECRET_KEY}"]
+      ]
     },
     {
       "type": "node",
