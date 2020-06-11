@@ -36,7 +36,8 @@
   "prettier": {
     "printWidth": 100,
     "singleQuote": true,
-    "trailingComma": "none"
+    "trailingComma": "none",
+    "quoteProps": "consistent"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",

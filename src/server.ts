@@ -39,17 +39,17 @@ app.get('/configuration', (req, res) => {
 app.get('/checkouts', (req, res) => {
   const body = {
     amount: {
-      amount: "63.00",
-      currency: "USD"
+      amount: '63.00',
+      currency: 'USD'
     },
     consumer: {
-      givenNames: "Joe",
-      surname: "Consumer",
-      email: "test@afterpay.com"
+      givenNames: 'Joe',
+      surname: 'Consumer',
+      email: 'test@afterpay.com'
     },
     merchant: {
-      redirectConfirmUrl: "https://www.afterpay-merchant.com/confirm",
-      redirectCancelUrl: "https://www.afterpay-merchant.com/cancel"
+      redirectConfirmUrl: 'https://www.afterpay-merchant.com/confirm',
+      redirectCancelUrl: 'https://www.afterpay-merchant.com/cancel'
     }
   };
 
@@ -57,12 +57,12 @@ app.get('/checkouts', (req, res) => {
 
   const options = sharedOptions;
   options.path = '/v2/checkouts';
-  options.method = 'POST'
+  options.method = 'POST';
   options.headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'Content-Length': Buffer.byteLength(bodyData)
-  }
+  };
 
   const checkoutsReq = https.request(options, (configRes) => {
     configRes.on('data', (d) => {
