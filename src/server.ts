@@ -64,15 +64,19 @@ app.get('/configuration', (req, res) => {
 });
 
 app.post('/checkouts', (req, res) => {
+  const email = req.body.email;
+
+  if (email === undefined) {
+    throw new Error('Expected email in request body');
+  }
+
   const body = {
     amount: {
-      amount: '63.00',
+      amount: '100.00',
       currency: regionConfig.currency
     },
     consumer: {
-      givenNames: 'Joe',
-      surname: 'Consumer',
-      email: 'test@afterpay.com'
+      email: email
     },
     merchant: {
       redirectConfirmUrl: 'https://www.afterpay-merchant.com/confirm',
