@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser';
 import express from 'express';
 import https from 'https';
 
@@ -19,6 +20,8 @@ const sharedOptions: https.RequestOptions = {
 
 const app = express();
 
+app.use(bodyParser.json());
+
 app.get('/configuration', (req, res) => {
   const options = sharedOptions;
   options.path = '/v2/configuration';
@@ -36,7 +39,7 @@ app.get('/configuration', (req, res) => {
   configReq.end();
 });
 
-app.get('/checkouts', (req, res) => {
+app.post('/checkouts', (req, res) => {
   const body = {
     amount: {
       amount: '63.00',
