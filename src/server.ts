@@ -13,9 +13,29 @@ if (merchantId === undefined || secretKey === undefined) {
   process.exit(1);
 }
 
+// Accepts US, AU or NZ with US as the default if unspecified
+const region = process.env.AFTERPAY_REGION;
+let hostname = '';
+let currency = '';
+
+switch (region) {
+  case 'AU':
+    hostname = 'api-sandbox.afterpay.com';
+    currency = 'AUD';
+    break;
+  case 'NZ':
+    hostname = 'api-sandbox.afterpay.com';
+    currency = 'NZD';
+    break;
+  case 'US':
+  default:
+    hostname = 'api.us-sandbox.afterpay.com';
+    currency = 'USD';
+}
+
 const sharedOptions: https.RequestOptions = {
   auth: [merchantId, secretKey].join(':'),
-  hostname: 'api.us-sandbox.afterpay.com'
+  hostname: hostname
 };
 
 const app = express();
@@ -43,7 +63,7 @@ app.post('/checkouts', (req, res) => {
   const body = {
     amount: {
       amount: '63.00',
-      currency: 'USD'
+      currency: currency
     },
     consumer: {
       givenNames: 'Joe',
