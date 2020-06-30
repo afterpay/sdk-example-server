@@ -4,15 +4,18 @@ import { request, RequestOptions } from 'https';
 
 export function checkout(configuration: RegionConfiguration, options: RequestOptions): Handler {
   return (req, res) => {
-    const email = req.body.email;
+    const { email, amount } = req.body;
 
     if (email === undefined) {
       throw new Error('Expected email in request body');
     }
+    if (amount === undefined) {
+      throw new Error('Expected amount in request body');
+    }
 
     const body = {
       amount: {
-        amount: '100.00',
+        amount: amount,
         currency: configuration.currency
       },
       consumer: {
