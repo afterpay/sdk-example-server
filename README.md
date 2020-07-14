@@ -17,6 +17,12 @@ A server to power the [iOS][ios-example] and [Android][android-example] SDK exam
 
 ## Getting Started
 
+Install dependencies:
+
+```sh
+npm install
+```
+
 Build the server:
 
 ```sh
