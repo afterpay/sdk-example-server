@@ -5,7 +5,7 @@ appropriately.
 
 Bug fixes and new features should include tests and documentation.
 
-Contributors guide: https://github.com/ittybittyapps/afterpay-example-server/tree/master/CONTRIBUTING.md
+Contributors guide: https://github.com/afterpay/sdk-example-server/tree/master/CONTRIBUTING.md
 -->
 
 ## Summary of Changes
