@@ -1,6 +1,8 @@
 import bodyParser from 'body-parser';
 import express from 'express';
-import { RequestOptions } from 'https';
+import fs from 'fs';
+import https from 'https';
+import path from 'path';
 import { Region, configuration as regionConfiguraiton } from './Region';
 import { configuration } from './routes/configuration';
 import { checkout } from './routes/checkout';
@@ -19,21 +21,23 @@ if (merchantId === undefined || secretKey === undefined) {
 const region = (process.env.AFTERPAY_REGION as Region) ?? Region.US;
 const regionConfig = regionConfiguraiton(region);
 
-const defaultOptions: RequestOptions = {
+const defaultOptions: https.RequestOptions = {
   auth: `${merchantId}:${secretKey}`,
   hostname: regionConfig.hostname
 };
 
 const port = 3000;
 
-express()
+const certificates = {
+  key: fs.readFileSync(path.join('config', 'server.key')),
+  cert: fs.readFileSync(path.join('config', 'server.crt'))
+};
+
+const app = express()
   .use(bodyParser.json())
   .get('/configuration', configuration(defaultOptions))
-  .post('/checkouts', checkout(regionConfig, defaultOptions))
-  .listen(port, (err) => {
-    if (err) {
-      return console.error(err);
-    }
+  .post('/checkouts', checkout(regionConfig, defaultOptions));
 
-    return console.log(`server is listening on ${port}`);
-  });
+https.createServer(certificates, app).listen(port, () => {
+  return console.log(`server is listening on ${port}`);
+});
