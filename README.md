@@ -8,6 +8,9 @@ A server to power the [iOS][ios-example] and [Android][android-example] SDK exam
 
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
+  - [Region](#region)
+  - [Authentication](#authentication)
+  - [Running the Server](#running-the-server)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -16,6 +19,22 @@ A server to power the [iOS][ios-example] and [Android][android-example] SDK exam
 - [Node.js][node]
 
 ## Getting Started
+
+### Region
+
+The region is specified with the `AFTERPAY_REGION` environment variable in the format of an ISO 3166 two-letter country code.
+
+Supported regions are: AU, NZ, US and CA.
+
+> **NOTE**: The example server will fallback to the US region if the environment variable is not set.
+
+### Authentication
+
+A Merchant ID and Secret Key are required for access to the Afterpay sandbox API in the selected region. These must be defined in the `AFTERPAY_MERCHANT_ID` and `AFTERPAY_SECRET_KEY` environment variables, respectively.
+
+For convenience, these environment variables can be defined in a [`.env`][dot-env] file in the root of this repository. The values specified in this file will be automatically loaded into the environment when the server is started.
+
+### Running the Server
 
 Install dependencies:
 
@@ -51,8 +70,10 @@ This project is licensed under the terms of the Apache 2.0 license. See the [LIC
 [build-status-badge]: https://github.com/afterpay/sdk-example-server/workflows/Build%20and%20Lint/badge.svg?branch=master&event=push
 [code-style-badge]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg
 [contributing]: CONTRIBUTING.md
+[dot-env]: https://github.com/motdotla/dotenv#readme
 [ios-example]: https://github.com/afterpay/sdk-ios/tree/master/Example
 [license]: LICENSE
 [localhost]: http://localhost:3000
 [node]: https://github.com/nodejs/node
 [prettier]: https://github.com/prettier/prettier
+[region]: https://github.com/afterpay/sdk-example-server/blob/master/src/Region.ts
