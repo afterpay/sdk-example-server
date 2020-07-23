@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import fs from 'fs';
+import http from 'http';
 import https from 'https';
 import path from 'path';
 import { Region, configuration as regionConfiguraiton } from './Region';
@@ -26,8 +27,6 @@ const defaultOptions: https.RequestOptions = {
   hostname: regionConfig.hostname
 };
 
-const port = 3000;
-
 const certificates = {
   key: fs.readFileSync(path.join('config', 'server.key')),
   cert: fs.readFileSync(path.join('config', 'server.crt'))
@@ -38,6 +37,12 @@ const app = express()
   .get('/configuration', configuration(defaultOptions))
   .post('/checkouts', checkout(regionConfig, defaultOptions));
 
-https.createServer(certificates, app).listen(port, () => {
-  return console.log(`server is listening on ${port}`);
+const httpPort = 3000;
+http.createServer(app).listen(httpPort, () => {
+  console.log(`server is listening on http://localhost:${httpPort}`);
+});
+
+const httpsPort = 3001;
+https.createServer(certificates, app).listen(httpsPort, () => {
+  console.log(`server is listening on https://localhost:${httpsPort}`);
 });
