@@ -2,7 +2,7 @@
   <head>
     <script>
       window.addEventListener("message", (event) => {
-        let dataString = JSON.stringify(event.data);
+        let dataString = (typeof event.data) === 'string' ? event.data : JSON.stringify(event.data);
         window.webkit.messageHandlers.nativeApp.postMessage(dataString);
       });
 
