@@ -1,6 +1,6 @@
 window.addEventListener("message", (event) => {
     let dataString = (typeof event.data) === 'string' ? event.data : JSON.stringify(event.data);
-    window.webkit.messageHandlers.nativeApp.postMessage(dataString);
+    window.webkit.messageHandlers.iOS.postMessage(dataString);
 });
 
 function postCheckoutMessage(message, targetOrigin) {
