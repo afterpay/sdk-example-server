@@ -23,8 +23,8 @@ export function checkout(configuration: RegionConfiguration, options: RequestOpt
         email: email
       },
       merchant: {
-        redirectConfirmUrl: 'https://www.afterpay-merchant.com/confirm',
-        redirectCancelUrl: 'https://www.afterpay-merchant.com/cancel'
+        redirectConfirmUrl: 'https://afterpay.github.io/sdk-example-server/confirm',
+        redirectCancelUrl: 'https://afterpay.github.io/sdk-example-server/cancel'
       },
       mode: mode
     };
