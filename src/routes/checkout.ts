@@ -26,7 +26,7 @@ export function checkout(configuration: RegionConfiguration, options: RequestOpt
         redirectConfirmUrl: 'https://www.afterpay-merchant.com/confirm',
         redirectCancelUrl: 'https://www.afterpay-merchant.com/cancel'
       },
-      mode: mode == null ? 'standard' : mode
+      mode: mode
     };
 
     const bodyData = JSON.stringify(body);
