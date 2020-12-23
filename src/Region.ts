@@ -2,7 +2,8 @@ export enum Region {
   AU = 'AU',
   CA = 'CA',
   NZ = 'NZ',
-  US = 'US'
+  US = 'US',
+  UK = 'UK'
 }
 
 export type RegionConfiguration = {
@@ -20,5 +21,7 @@ export function configuration(region: Region): RegionConfiguration {
       return { hostname: 'api-sandbox.afterpay.com', currency: 'NZD' };
     case Region.US:
       return { hostname: 'api.us-sandbox.afterpay.com', currency: 'USD' };
+    case Region.UK:
+      return { hostname: 'portal.sandbox.clearpay.co.uk', currency: 'GBP' };
   }
 }
