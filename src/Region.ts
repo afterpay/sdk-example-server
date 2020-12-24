@@ -22,6 +22,6 @@ export function configuration(region: Region): RegionConfiguration {
     case Region.US:
       return { hostname: 'api.us-sandbox.afterpay.com', currency: 'USD' };
     case Region.UK:
-      return { hostname: 'portal.sandbox.clearpay.co.uk', currency: 'GBP' };
+      return { hostname: 'api.eu-sandbox.afterpay.com', currency: 'GBP' };
   }
 }
