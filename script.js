@@ -15,7 +15,8 @@ window.addEventListener("message", (event) => {
     }
 });
 
-function postCheckoutMessage(message, targetOrigin) {
+function postCheckoutMessage(json, targetOrigin) {
+    let message = JSON.parse(json);
     window.checkoutWindow.postMessage(message, targetOrigin);
 }
 
