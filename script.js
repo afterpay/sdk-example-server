@@ -1,25 +1,62 @@
 window.addEventListener("message", (event) => {
-    let dataString = (typeof event.data) === 'string' ? event.data : JSON.stringify(event.data);
-    var app
+  const dataString = (typeof event.data) === 'string' ? event.data : JSON.stringify(event.data);
+  let app;
 
-    try {
-      app = window.webkit.messageHandlers.iOS;
-    } catch {}
+  try {
+    app = window.webkit.messageHandlers.iOS;
+  } catch { }
 
-    if (typeof app === 'undefined' && typeof Android !== 'undefined') {
-      app = Android;
-    }
+  if (typeof app === 'undefined' && typeof Android !== 'undefined') {
+    app = Android;
+  }
 
-    if (typeof app !== 'undefined') {
-      app.postMessage(dataString);
-    }
+  if (typeof app !== 'undefined') {
+    app.postMessage(dataString);
+  }
 });
 
-function postCheckoutMessage(json, targetOrigin) {
-    let message = JSON.parse(json);
-    window.checkoutWindow.postMessage(message, targetOrigin);
+let checkoutUrl;
+
+function openCheckout(json) {
+  const checkout = JSON.parse(json);
+  const environment = checkout.environment;
+  const version = checkout.version;
+  const [language, region] = checkout.locale.split('_').map((string) => string.toLowerCase());
+
+  const baseUrl = makeBaseUrl(region, environment);
+  const query = [
+    '?isWindowed=true',
+    `&token=${checkout.token}`,
+    (checkout.buyNow === true) ? '&buyNow=true' : '',
+    (checkout.pickup === true) ? '&pickup=true' : '',
+    (checkout.deferredShipping === true) ? '&shippingOptionRequired=false' : '',
+    `&sdk=${version}`
+  ].join('');
+
+  checkoutUrl = baseUrl + query;
+
+  window.checkoutWindow = window.open(checkoutUrl);
 }
 
-function openAfterpay(url) {
-    window.checkoutWindow = window.open(url)
+const afterpayRegions = ['au', 'nz', 'us', 'ca'];
+const clearpayRegions = ['gb'];
+
+function makeBaseUrl(region, environment) {
+  const prefix = environment == 'sandbox' ? 'portal.sandbox.' : 'portal.';
+  const endpoint = (() => {
+    if (afterpayRegions.includes(region)) {
+      return 'afterpay.com';
+    } else if (clearpayRegions.includes(region)) {
+      return 'clearpay.co.uk';
+    } else {
+      throw 'Region: ' + region + ' is unsupported';
+    }
+  })();
+
+  return `https://${prefix}${endpoint}/${region}/checkout/`
+}
+
+function postMessageToCheckout(json) {
+  let message = JSON.parse(json);
+  window.checkoutWindow.postMessage(message, checkoutUrl);
 }
