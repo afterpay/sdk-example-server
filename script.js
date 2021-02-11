@@ -27,9 +27,9 @@ function openCheckout(json) {
   const query = [
     '?isWindowed=true',
     `&token=${checkout.token}`,
-    (checkout.buyNow === true) ? '&buyNow=true' : '',
-    (checkout.pickup === true) ? '&pickup=true' : '',
-    (checkout.deferredShipping === true) ? '&shippingOptionRequired=false' : '',
+    (typeof checkout.buyNow === 'boolean') ? `&buyNow=${checkout.buyNow}` : '',
+    (typeof checkout.pickup === 'boolean') ? `&pickup=${checkout.pickup}` : '',
+    (typeof checkout.shippingOptionRequired === 'boolean') ? `&shippingOptionRequired=${checkout.shippingOptionRequired}` : '',
     `&sdk=${version}`
   ].join('');
 
