@@ -23,8 +23,7 @@ export function checkout(configuration: RegionConfiguration, options: RequestOpt
         email: email
       },
       merchant: {
-        redirectConfirmUrl: 'https://afterpay.github.io/sdk-example-server/confirm',
-        redirectCancelUrl: 'https://afterpay.github.io/sdk-example-server/cancel'
+        popupOriginUrl: 'https://static.sandbox.afterpay.com'
       },
       mode: mode
     };
@@ -46,6 +45,7 @@ export function checkout(configuration: RegionConfiguration, options: RequestOpt
       configRes.on('data', (d) => {
         const responseObject = JSON.parse(d);
         res.json({
+          token: responseObject.token,
           url: responseObject.redirectCheckoutUrl
         });
       });
