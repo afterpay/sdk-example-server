@@ -23,7 +23,7 @@ export function checkout(configuration: RegionConfiguration, options: RequestOpt
         email: email
       },
       merchant: {
-        popupOriginUrl: 'https://static.sandbox.afterpay.com'
+        popupOriginUrl: 'https://static.afterpay.com'
       },
       mode: mode
     };
