@@ -21,7 +21,8 @@ function openCheckout(json) {
   const checkout = JSON.parse(json);
   const environment = checkout.environment;
   const version = checkout.version;
-  const [language, region] = checkout.locale.split('_').map((string) => string.toLowerCase());
+  let [language, region] = checkout.locale.split('_').map((string) => string.toLowerCase());
+  region = region === 'gb' ? 'uk' : region;
 
   const baseUrl = makeBaseUrl(region, environment);
   const query = [
@@ -39,7 +40,7 @@ function openCheckout(json) {
 }
 
 const afterpayRegions = ['au', 'nz', 'us', 'ca'];
-const clearpayRegions = ['gb'];
+const clearpayRegions = ['uk'];
 
 function makeBaseUrl(region, environment) {
   const prefix = environment == 'sandbox' ? 'portal.sandbox.' : 'portal.';
