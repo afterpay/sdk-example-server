@@ -23,6 +23,8 @@ export function checkout(configuration: RegionConfiguration, options: RequestOpt
         email: email
       },
       merchant: {
+        redirectConfirmUrl: 'https://example.com/some/path/confirm',
+        redirectCancelUrl: 'https://example.com/some/path/cancel',
         popupOriginUrl: 'https://static.afterpay.com'
       },
       mode: mode
