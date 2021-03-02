@@ -1,5 +1,9 @@
 import { Handler } from 'express';
 import { request, RequestOptions } from 'https';
+import { Region, locale } from '../Region';
+
+const region = (process.env.AFTERPAY_REGION as Region) ?? Region.US;
+const regionLocale = locale(region);
 
 export function configuration(options: RequestOptions): Handler {
   return (req, res) => {
@@ -10,7 +14,12 @@ export function configuration(options: RequestOptions): Handler {
 
     const configRequest = request(configOptions, (configRes) => {
       configRes.on('data', (d) => {
-        res.json(JSON.parse(d));
+        const responseObject = JSON.parse(d);
+        res.json({
+          minimumAmount: responseObject.minimumAmount,
+          maximumAmount: responseObject.maximumAmount,
+          locale: regionLocale
+        });
       });
     });
 
