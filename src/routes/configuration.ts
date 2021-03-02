@@ -1,6 +1,6 @@
 import { Handler } from 'express';
 import { request, RequestOptions } from 'https';
-import { Region, locale as locale } from '../Region';
+import { Region, locale } from '../Region';
 
 const region = (process.env.AFTERPAY_REGION as Region) ?? Region.US;
 const regionLocale = locale(region);
