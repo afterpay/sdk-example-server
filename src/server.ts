@@ -4,7 +4,7 @@ import fs from 'fs';
 import http from 'http';
 import https from 'https';
 import path from 'path';
-import { Region, configuration as regionConfiguration } from './Region';
+import { Region, locale, configuration as regionConfiguration } from './Region';
 import { configuration } from './routes/configuration';
 import { checkout } from './routes/checkout';
 
@@ -34,7 +34,7 @@ const certificates = {
 
 const app = express()
   .use(bodyParser.json())
-  .get('/configuration', configuration(defaultOptions))
+  .get('/configuration', configuration(locale(region), defaultOptions))
   .post('/checkouts', checkout(regionConfig, defaultOptions));
 
 const httpPort = 3000;
