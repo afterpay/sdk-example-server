@@ -1,7 +1,8 @@
 import { Handler } from 'express';
 import { request, RequestOptions } from 'https';
+import { Locale } from '../Region';
 
-export function configuration(locale: string, options: RequestOptions): Handler {
+export function configuration(locale: Locale, options: RequestOptions): Handler {
   return (req, res) => {
     const configOptions = {
       ...options,
@@ -12,8 +13,7 @@ export function configuration(locale: string, options: RequestOptions): Handler 
       configRes.on('data', (d) => {
         const responseObject = JSON.parse(d);
         res.json({
-          minimumAmount: responseObject.minimumAmount,
-          maximumAmount: responseObject.maximumAmount,
+          ...responseObject,
           locale: locale
         });
       });

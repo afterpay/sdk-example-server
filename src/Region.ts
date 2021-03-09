@@ -26,17 +26,23 @@ export function configuration(region: Region): RegionConfiguration {
   }
 }
 
-export function locale(region: Region): string {
+export type Locale = {
+  identifier: string;
+  language: string;
+  country: string;
+};
+
+export function locale(region: Region): Locale {
   switch (region) {
     case Region.AU:
-      return 'en_AU';
+      return { identifier: 'en_AU', language: 'en', country: 'AU' };
     case Region.CA:
-      return 'en_CA';
+      return { identifier: 'en_CA', language: 'en', country: 'CA' };
     case Region.NZ:
-      return 'en_NZ';
+      return { identifier: 'en_NZ', language: 'en', country: 'NZ' };
     case Region.US:
-      return 'en_US';
+      return { identifier: 'en_US', language: 'en', country: 'US' };
     case Region.UK:
-      return 'en_UK';
+      return { identifier: 'en_UK', language: 'en', country: 'UK' };
   }
 }
