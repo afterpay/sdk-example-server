@@ -43,6 +43,6 @@ export function locale(region: Region): Locale {
     case Region.US:
       return { identifier: 'en_US', language: 'en', country: 'US' };
     case Region.UK:
-      return { identifier: 'en_UK', language: 'en', country: 'UK' };
+      return { identifier: 'en_GB', language: 'en', country: 'GB' };
   }
 }
