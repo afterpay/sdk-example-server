@@ -1,5 +1,11 @@
 window.addEventListener("message", (event) => {
-  const dataString = (typeof event.data) === 'string' ? event.data : JSON.stringify(event.data);
+  // The SDK expects a legacy message for endTransaction (JSON protocol for all other messages).
+  function convertEndTransactionToLegacy(data) {
+    return data && data.type === 'endTransaction' ? data.payload : data;
+  }
+
+  const data = convertEndTransactionToLegacy(event.data);
+  const dataString = (typeof data) === 'string' ? data : JSON.stringify(data);
   let app;
 
   try {
@@ -26,8 +32,9 @@ function openCheckout(json) {
 
   const baseUrl = makeBaseUrl(region, environment);
   const query = [
-    '?isWindowed=true',
-    `&token=${checkout.token}`,
+    `?token=${checkout.token}`,
+    '&isWindowed=true',
+    '&protocol=json',
     (typeof checkout.buyNow === 'boolean') ? `&buyNow=${checkout.buyNow}` : '',
     (typeof checkout.pickup === 'boolean') ? `&pickup=${checkout.pickup}` : '',
     (typeof checkout.shippingOptionRequired === 'boolean') ? `&shippingOptionRequired=${checkout.shippingOptionRequired}` : '',
