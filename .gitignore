@@ -85,8 +85,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
-.env.test
+.env*
 
 # Serverless directories
 .serverless/

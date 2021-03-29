@@ -4,11 +4,12 @@ import { request, RequestOptions } from 'https';
 
 export function checkout(configuration: RegionConfiguration, options: RequestOptions): Handler {
   return (req, res) => {
-    const { email, amount } = req.body;
+    const { email, amount, mode } = req.body;
 
     if (email === undefined) {
       throw new Error('Expected email in request body');
     }
+
     if (amount === undefined) {
       throw new Error('Expected amount in request body');
     }
@@ -22,9 +23,11 @@ export function checkout(configuration: RegionConfiguration, options: RequestOpt
         email: email
       },
       merchant: {
-        redirectConfirmUrl: 'https://www.afterpay-merchant.com/confirm',
-        redirectCancelUrl: 'https://www.afterpay-merchant.com/cancel'
-      }
+        redirectConfirmUrl: 'https://example.com/some/path/confirm',
+        redirectCancelUrl: 'https://example.com/some/path/cancel',
+        popupOriginUrl: 'https://static.afterpay.com'
+      },
+      mode: mode
     };
 
     const bodyData = JSON.stringify(body);
@@ -44,6 +47,7 @@ export function checkout(configuration: RegionConfiguration, options: RequestOpt
       configRes.on('data', (d) => {
         const responseObject = JSON.parse(d);
         res.json({
+          token: responseObject.token,
           url: responseObject.redirectCheckoutUrl
         });
       });

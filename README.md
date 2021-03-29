@@ -54,6 +54,14 @@ npm run start
 
 View the server response at [http://localhost:3000][localhost].
 
+### Linting
+
+Our workflows run a linting step, but you should also run it locally while developing:
+
+```sh
+npm run lint
+````
+
 ## Contributing
 
 Contributions are welcome! Please read our [contributing guidelines][contributing].
