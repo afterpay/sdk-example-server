@@ -23,6 +23,14 @@
 				}
 			}
 
+			/// Load the widget, and place it in the #afterpay-widget-container div.
+			///
+			/// One of `token` or `amount` must be provided. Use the `token` for tokened-mode, use `amount` for tokenless.
+			///
+			/// - token: checkout token. Use `null` for tokenless mode.
+			/// - amount: the total payment as a money object. eg: { "amount": "20.00", "currency": "USD" }. Only provide for tokenless mode, otherwise, use `null`.
+			/// - locale: locale to use in the widget.
+			/// - style: style options for the widget, eg: { "logo": true, "heading": false }.
 			function createAfterpayWidget(token, amount, locale, style) {
 
 				new MutationObserver(() => {
