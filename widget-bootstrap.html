@@ -45,7 +45,7 @@
 				window.afterpayWidget = new AfterPay.Widgets.PaymentSchedule({
 					token: token,
 					target: "#afterpay-widget-container",
-					locale: locale.replaceAll("_", "-"),
+					locale: locale.replace("_", "-"),
 					amount: amount,
 					onReady: function (event) {
 						sendToApp(event);
