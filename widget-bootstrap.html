@@ -33,8 +33,10 @@
       function createAfterpayWidget(token, amount, locale, style) {
 
         new MutationObserver(() => {
-            const height = document.getElementById("afterpay-widget-container").offsetHeight + 36; // plus extra px for margins
-            postToApp(JSON.stringify({ "type": "resize", "size": height }));
+            const height = document.getElementById("afterpay-widget-container").offsetHeight;
+            if (height > 0) {
+              postToApp(JSON.stringify({ "type": "resize", "size": height + 36 })); // plus extra px for margins
+            }
           })
           .observe(
             document.getElementById('afterpay-widget-container'),
