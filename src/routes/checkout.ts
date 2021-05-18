@@ -46,10 +46,19 @@ export function checkout(configuration: RegionConfiguration, options: RequestOpt
     const checkoutRequest = request(checkoutOptions, (configRes) => {
       configRes.on('data', (d) => {
         const responseObject = JSON.parse(d);
-        res.json({
-          token: responseObject.token,
-          url: responseObject.redirectCheckoutUrl
-        });
+
+        if (responseObject.errorCode !== undefined) {
+          console.log(responseObject);
+          res.json({
+            errorCode: responseObject.errorCode,
+            message: responseObject.message
+          });
+        } else {
+          res.json({
+            token: responseObject.token,
+            url: responseObject.redirectCheckoutUrl
+          });
+        }
       });
     });
 
