@@ -32,6 +32,18 @@ Supported regions are: AU, NZ, US and CA.
 
 A Merchant ID and Secret Key are required for access to the Afterpay sandbox API in the selected region. These must be defined in the `AFTERPAY_MERCHANT_ID` and `AFTERPAY_SECRET_KEY` environment variables, respectively.
 
+This can be done a number of ways:
+
+1. Exporting before starting the server
+```sh
+export AFTERPAY_MERCHANT_ID="#####" && \
+export AFTERPAY_SECRET_KEY="************"
+```
+
+2. Copy the `.env.example` to `.env` and modify the values
+
+**Note:** If an environment variable is set with both methods, the `.env` file will take precedence.
+
 ### Running the Server
 
 Install dependencies:
