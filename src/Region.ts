@@ -1,9 +1,13 @@
 export enum Region {
-  AU = 'AU',
-  CA = 'CA',
-  NZ = 'NZ',
-  US = 'US',
-  UK = 'UK'
+  EN_AU = 'EN_AU',
+  EN_CA = 'EN_CA',
+  FR_CA = 'FR_CA',
+  EN_NZ = 'EN_NZ',
+  EN_US = 'EN_US',
+  EN_UK = 'EN_UK',
+  FR_FR = 'FR_FR',
+  IT_IT = 'IT_IT',
+  ES_ES = 'ES_ES',
 }
 
 export type RegionConfiguration = {
@@ -12,16 +16,21 @@ export type RegionConfiguration = {
 
 export function configuration(region: Region): RegionConfiguration {
   switch (region) {
-    case Region.AU:
+    case Region.EN_AU:
       return { currency: 'AUD' };
-    case Region.CA:
+    case Region.EN_CA:
+    case Region.FR_CA:
       return { currency: 'CAD' };
-    case Region.NZ:
+    case Region.EN_NZ:
       return { currency: 'NZD' };
-    case Region.US:
+    case Region.EN_US:
       return { currency: 'USD' };
-    case Region.UK:
+    case Region.EN_UK:
       return { currency: 'GBP' };
+    case Region.FR_FR:
+    case Region.IT_IT:
+    case Region.ES_ES:
+      return { currency: 'EUR' };
   }
 }
 
@@ -33,15 +42,23 @@ export type Locale = {
 
 export function locale(region: Region): Locale {
   switch (region) {
-    case Region.AU:
+    case Region.EN_AU:
       return { identifier: 'en_AU', language: 'en', country: 'AU' };
-    case Region.CA:
+    case Region.EN_CA:
       return { identifier: 'en_CA', language: 'en', country: 'CA' };
-    case Region.NZ:
+    case Region.FR_CA:
+      return { identifier: 'fr_CA', language: 'fr', country: 'CA' };
+    case Region.EN_NZ:
       return { identifier: 'en_NZ', language: 'en', country: 'NZ' };
-    case Region.US:
+    case Region.EN_US:
       return { identifier: 'en_US', language: 'en', country: 'US' };
-    case Region.UK:
+    case Region.EN_UK:
       return { identifier: 'en_GB', language: 'en', country: 'GB' };
+    case Region.FR_FR:
+      return { identifier: 'fr_FR', language: 'fr', country: 'FR' };
+    case Region.IT_IT:
+      return { identifier: 'it_IT', language: 'it', country: 'IT' };
+    case Region.ES_ES:
+      return { identifier: 'es_ES', language: 'es', country: 'ES' };
   }
 }

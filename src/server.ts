@@ -22,7 +22,7 @@ if (merchantId === undefined || secretKey === undefined) {
   process.exit(1);
 }
 
-const region = (process.env.AFTERPAY_REGION as Region) ?? Region.US;
+const region = (process.env.AFTERPAY_REGION as Region) ?? Region.EN_US;
 const regionConfig = regionConfiguration(region);
 
 const defaultOptions: https.RequestOptions = {
