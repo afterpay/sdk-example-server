@@ -7,6 +7,9 @@ import path from 'path';
 import { Region, locale, configuration as regionConfiguration } from './Region';
 import { configuration } from './routes/configuration';
 import { checkout } from './routes/checkout';
+import * as dotenv from 'dotenv';
+
+dotenv.config({ override: true });
 
 const merchantId = process.env.AFTERPAY_MERCHANT_ID;
 const secretKey = process.env.AFTERPAY_SECRET_KEY;
