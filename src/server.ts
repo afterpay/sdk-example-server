@@ -24,7 +24,7 @@ const regionConfig = regionConfiguration(region);
 
 const defaultOptions: https.RequestOptions = {
   auth: `${merchantId}:${secretKey}`,
-  hostname: regionConfig.hostname
+  hostname: 'global-api-sandbox.afterpay.com'
 };
 
 const certificates = {

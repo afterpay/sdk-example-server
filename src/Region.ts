@@ -7,22 +7,21 @@ export enum Region {
 }
 
 export type RegionConfiguration = {
-  hostname: string;
   currency: string;
 };
 
 export function configuration(region: Region): RegionConfiguration {
   switch (region) {
     case Region.AU:
-      return { hostname: 'api-sandbox.afterpay.com', currency: 'AUD' };
+      return { currency: 'AUD' };
     case Region.CA:
-      return { hostname: 'api.us-sandbox.afterpay.com', currency: 'CAD' };
+      return { currency: 'CAD' };
     case Region.NZ:
-      return { hostname: 'api-sandbox.afterpay.com', currency: 'NZD' };
+      return { currency: 'NZD' };
     case Region.US:
-      return { hostname: 'api.us-sandbox.afterpay.com', currency: 'USD' };
+      return { currency: 'USD' };
     case Region.UK:
-      return { hostname: 'api.eu-sandbox.afterpay.com', currency: 'GBP' };
+      return { currency: 'GBP' };
   }
 }
 
