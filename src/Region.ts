@@ -7,7 +7,7 @@ export enum Region {
   EN_UK = 'en-UK',
   FR_FR = 'fr-FR',
   IT_IT = 'it-IT',
-  ES_ES = 'es-ES',
+  ES_ES = 'es-ES'
 }
 
 export type RegionConfiguration = {
