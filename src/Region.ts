@@ -1,13 +1,13 @@
 export enum Region {
-  EN_AU = 'EN_AU',
-  EN_CA = 'EN_CA',
-  FR_CA = 'FR_CA',
-  EN_NZ = 'EN_NZ',
-  EN_US = 'EN_US',
-  EN_UK = 'EN_UK',
-  FR_FR = 'FR_FR',
-  IT_IT = 'IT_IT',
-  ES_ES = 'ES_ES',
+  EN_AU = 'en-AU',
+  EN_CA = 'en-CA',
+  FR_CA = 'fr-CA',
+  EN_NZ = 'en-NZ',
+  EN_US = 'en-US',
+  EN_UK = 'en-UK',
+  FR_FR = 'fr-FR',
+  IT_IT = 'it-IT',
+  ES_ES = 'es-ES',
 }
 
 export type RegionConfiguration = {

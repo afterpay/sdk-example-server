@@ -22,11 +22,11 @@ A server to power the [iOS][ios-example] and [Android][android-example] SDK exam
 
 ### Region
 
-The region is specified with the `AFTERPAY_REGION` environment variable in the format of an ISO 3166 two-letter country code.
+The region is specified with the `AFTERPAY_REGION` environment variable in the format of an IETF language four-letter hyphen separated language code and country code. (ie `en-NZ`)
 
-Supported regions are: AU, NZ, US and CA.
+Supported regions are: `en-AU`, `en-CA`, `en-CA`, `es-ES`, `fr-FR`, `it-IT`, `en-NZ` and `en-US`.
 
-> **NOTE**: The example server will fallback to the US region if the environment variable is not set.
+> **NOTE**: The example server will fallback to the `en-US` region if the environment variable is not set.
 
 ### Authentication
 
