@@ -28,7 +28,7 @@ export function checkout(configuration: RegionConfiguration, options: RequestOpt
         popupOriginUrl: 'https://static.afterpay.com'
       },
       mode: mode,
-      isCashAppPay: isCashApp || false,
+      isCashAppPay: isCashApp || false
     };
 
     const bodyData = JSON.stringify(body);
