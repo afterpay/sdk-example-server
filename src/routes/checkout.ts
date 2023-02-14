@@ -4,7 +4,7 @@ import { request, RequestOptions } from 'https';
 
 export function checkout(configuration: RegionConfiguration, options: RequestOptions): Handler {
   return (req, res) => {
-    const { email, amount, mode } = req.body;
+    const { email, amount, mode, isCashAppPay } = req.body;
 
     if (email === undefined) {
       throw new Error('Expected email in request body');
@@ -27,7 +27,8 @@ export function checkout(configuration: RegionConfiguration, options: RequestOpt
         redirectCancelUrl: 'https://example.com/some/path/cancel',
         popupOriginUrl: 'https://static.afterpay.com'
       },
-      mode: mode
+      mode: mode,
+      isCashAppPay: isCashAppPay || false
     };
 
     const bodyData = JSON.stringify(body);
