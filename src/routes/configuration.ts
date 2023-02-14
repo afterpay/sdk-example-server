@@ -6,7 +6,10 @@ export function configuration(locale: Locale, options: RequestOptions): Handler 
   return (req, res) => {
     const configOptions = {
       ...options,
-      path: '/v2/configuration'
+      path: '/v2/configuration',
+      headers: {
+        'User-Agent': 'Mobile SDK Example Server'
+      }
     };
 
     const configRequest = request(configOptions, (configRes) => {

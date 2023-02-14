@@ -40,7 +40,8 @@ export function checkout(configuration: RegionConfiguration, options: RequestOpt
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(bodyData)
+        'Content-Length': Buffer.byteLength(bodyData),
+        'User-Agent': 'Mobile SDK Example Server'
       }
     };
 
