@@ -13,6 +13,7 @@ dotenv.config({ override: true });
 
 const merchantId = process.env.AFTERPAY_MERCHANT_ID;
 const secretKey = process.env.AFTERPAY_SECRET_KEY;
+const hostname = process.env.AFTERPAY_API_HOSTNAME || 'global-api-sandbox.afterpay.com';
 
 if (merchantId === undefined || secretKey === undefined) {
   console.error(
@@ -27,7 +28,7 @@ const regionConfig = regionConfiguration(region);
 
 const defaultOptions: https.RequestOptions = {
   auth: `${merchantId}:${secretKey}`,
-  hostname: 'global-api-sandbox.afterpay.com'
+  hostname: hostname
 };
 
 const certificates = {
