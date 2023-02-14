@@ -28,7 +28,7 @@ const regionConfig = regionConfiguration(region);
 
 const defaultOptions: https.RequestOptions = {
   auth: `${merchantId}:${secretKey}`,
-  hostname: hostname
+  hostname
 };
 
 const certificates = {
