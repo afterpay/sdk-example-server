@@ -8,7 +8,7 @@ export function configuration(locale: Locale, options: RequestOptions): Handler 
       ...options,
       path: '/v2/configuration',
       headers: {
-        'User-Agent': 'Mobile SDK Example Server',
+        'User-Agent': 'Mobile SDK Example Server'
       }
     };
 

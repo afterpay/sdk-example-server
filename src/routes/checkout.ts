@@ -41,7 +41,7 @@ export function checkout(configuration: RegionConfiguration, options: RequestOpt
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Content-Length': Buffer.byteLength(bodyData),
-        'User-Agent': 'Mobile SDK Example Server',
+        'User-Agent': 'Mobile SDK Example Server'
       }
     };
 
