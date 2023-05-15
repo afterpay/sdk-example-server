@@ -69,4 +69,4 @@ export const post: Handler = async (req, res) => {
   checkoutRequest.write(bodyData);
 
   checkoutRequest.end();
-}
+};
