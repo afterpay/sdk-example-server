@@ -19,7 +19,10 @@ const defaultOpts: httpsRequestOptions = {
 };
 
 export default class HttpClient {
-  static request(options: httpsRequestOptions, callback: (res: IncomingMessage) => void): ClientRequest {
+  static request(
+    options: httpsRequestOptions,
+    callback: (res: IncomingMessage) => void
+  ): ClientRequest {
     const requestOptions: httpsRequestOptions = {
       ...defaultOpts,
       ...options
