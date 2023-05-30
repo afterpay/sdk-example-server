@@ -1,31 +1,29 @@
 import { Handler } from 'express';
-import { request, RequestOptions } from 'https';
-import { Locale } from '../Region';
+import HttpClient from '../config/HttpClient';
+import { locale } from '../config/Region';
 
-export function configuration(locale: Locale, options: RequestOptions): Handler {
-  return (req, res) => {
-    const configOptions = {
-      ...options,
+export const get: Handler = async (_req, res) => {
+  const configRequest = HttpClient.request(
+    {
       path: '/v2/configuration',
       headers: {
         'User-Agent': 'Mobile SDK Example Server'
       }
-    };
-
-    const configRequest = request(configOptions, (configRes) => {
+    },
+    (configRes) => {
       configRes.on('data', (d) => {
         const responseObject = JSON.parse(d);
         res.json({
           ...responseObject,
-          locale: locale
+          locale
         });
       });
-    });
+    }
+  );
 
-    configRequest.on('error', (e) => {
-      console.log(e);
-    });
+  configRequest.on('error', (e) => {
+    console.log(e);
+  });
 
-    configRequest.end();
-  };
-}
+  configRequest.end();
+};
