@@ -59,7 +59,8 @@ export const post: Handler = async (req, res) => {
     });
 
     checkoutRes.on('end', () => {
-      const responseObject = JSON.parse(body.toString());
+      const finalBody = Buffer.concat(body).toString();
+      const responseObject = JSON.parse(finalBody);
 
       if (responseObject.errorCode !== undefined) {
         LOGGER.error('Checkout response error', responseObject);
