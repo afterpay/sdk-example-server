@@ -51,7 +51,7 @@ export const post: Handler = async (req, res) => {
   LOGGER.debug('Checkout request options', checkoutOptions);
 
   const checkoutRequest = HttpClient.request(checkoutOptions, (checkoutRes) => {
-    let body: Buffer[] = []
+    const body: Buffer[] = [];
 
     checkoutRes.on('data', (chunk) => {
       LOGGER.debug('Checkout response chunk', chunk.toString());
@@ -76,7 +76,7 @@ export const post: Handler = async (req, res) => {
           url: responseObject.redirectCheckoutUrl
         });
       }
-    })
+    });
   });
 
   checkoutRequest.on('error', (e) => {
@@ -86,8 +86,7 @@ export const post: Handler = async (req, res) => {
   checkoutRequest.write(bodyData, (error) => {
     LOGGER.info('Writing checkout request');
 
-    if (error)
-      LOGGER.error('Error writing body data to checkout request', error);
+    if (error) LOGGER.error('Error writing body data to checkout request', error);
   });
 
   checkoutRequest.end(() => LOGGER.info('Finished writing checkout request'));

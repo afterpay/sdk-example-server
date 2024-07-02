@@ -9,7 +9,7 @@ export const get: Handler = async (_req, res) => {
     headers: {
       'User-Agent': 'Mobile SDK Example Server'
     }
-  }
+  };
 
   LOGGER.debug('Configuration request options', configOptions);
 
@@ -29,5 +29,7 @@ export const get: Handler = async (_req, res) => {
     LOGGER.error('Configuration request error', e);
   });
 
-  configRequest.end(() => { LOGGER.debug('Finished writing configuration request')});
+  configRequest.end(() => {
+    LOGGER.debug('Finished writing configuration request');
+  });
 };
