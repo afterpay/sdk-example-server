@@ -6,6 +6,7 @@ import http from 'http';
 import https from 'https';
 import path from 'path';
 import * as dotenv from 'dotenv';
+import { LOGGER } from './Logger';
 
 dotenv.config({ override: true });
 
@@ -18,10 +19,10 @@ const app = express().use(bodyParser.json()).use('/', router());
 
 const httpPort = 3000;
 http.createServer(app).listen(httpPort, () => {
-  console.log(`server is listening on http://localhost:${httpPort}`);
+  LOGGER.log(`server is listening on http://localhost:${httpPort}`);
 });
 
 const httpsPort = 3001;
 https.createServer(certificates, app).listen(httpsPort, () => {
-  console.log(`server is listening on https://localhost:${httpsPort}`);
+  LOGGER.log(`server is listening on https://localhost:${httpsPort}\n`);
 });

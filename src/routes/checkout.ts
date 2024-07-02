@@ -1,15 +1,18 @@
 import { Handler } from 'express';
 import { regionConfig } from '../config/Region';
 import HttpClient from '../config/HttpClient';
+import { LOGGER } from '../Logger';
 
 export const post: Handler = async (req, res) => {
   const { email, amount, mode, isCashAppPay } = req.body;
 
   if (email === undefined) {
+    LOGGER.error('Expected email in request body');
     throw new Error('Expected email in request body');
   }
 
   if (amount === undefined) {
+    LOGGER.error('Expected amount in request body');
     throw new Error('Expected amount in request body');
   }
 
@@ -30,6 +33,8 @@ export const post: Handler = async (req, res) => {
     isCashAppPay: isCashAppPay || false
   };
 
+  LOGGER.debug('Checkout request body:', body);
+
   const bodyData = JSON.stringify(body);
 
   const checkoutOptions = {
@@ -43,30 +48,47 @@ export const post: Handler = async (req, res) => {
     }
   };
 
-  const checkoutRequest = HttpClient.request(checkoutOptions, (configRes) => {
-    configRes.on('data', (d) => {
-      const responseObject = JSON.parse(d);
+  LOGGER.debug('Checkout request options', checkoutOptions);
+
+  const checkoutRequest = HttpClient.request(checkoutOptions, (checkoutRes) => {
+    let body: Buffer[] = []
+
+    checkoutRes.on('data', (chunk) => {
+      LOGGER.debug('Checkout response chunk', chunk.toString());
+      body.push(chunk);
+    });
+
+    checkoutRes.on('end', () => {
+      const responseObject = JSON.parse(body.toString());
 
       if (responseObject.errorCode !== undefined) {
-        console.log(responseObject);
+        LOGGER.error('Checkout response error', responseObject);
+
         res.json({
           errorCode: responseObject.errorCode,
           message: responseObject.message
         });
       } else {
+        LOGGER.info('Checkout response', responseObject);
+
         res.json({
           token: responseObject.token,
           url: responseObject.redirectCheckoutUrl
         });
       }
-    });
+    })
   });
 
   checkoutRequest.on('error', (e) => {
-    console.log(e);
+    LOGGER.error('Checkout request error', e);
   });
 
-  checkoutRequest.write(bodyData);
+  checkoutRequest.write(bodyData, (error) => {
+    LOGGER.info('Writing checkout request');
 
-  checkoutRequest.end();
+    if (error)
+      LOGGER.error('Error writing body data to checkout request', error);
+  });
+
+  checkoutRequest.end(() => LOGGER.info('Finished writing checkout request'));
 };
