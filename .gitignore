@@ -96,3 +96,4 @@ typings/
 
 # Ignore built ts files
 dist/**/*
+/.idea/
