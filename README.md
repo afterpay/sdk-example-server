@@ -46,19 +46,22 @@ export AFTERPAY_SECRET_KEY="************"
 
 ### Running the Server
 
-Install dependencies:
+**Install dependencies:**
 
 ```sh
 npm install
 ```
 
-Build the server:
+**Note**, Block employees only: should also follow extra  setup instructions present at `go/ap-sdk-docs`.
+
+---
+**Build the server:**
 
 ```sh
 npm run build
 ```
 
-Run the server:
+**Run the server:**
 
 ```sh
 npm run start
