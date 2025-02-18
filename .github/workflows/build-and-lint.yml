@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Dependencies
-        run: npm install --omit=dev
+        run: npm install && npm install --only=dev
 
       - name: Build
         run: npm run build
