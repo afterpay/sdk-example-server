@@ -1,7 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import fs from 'fs';
-import { router } from 'express-file-routing';
+import createRouter from 'express-file-routing';
 import http from 'http';
 import https from 'https';
 import path from 'path';
@@ -15,7 +15,8 @@ const certificates = {
   cert: fs.readFileSync(path.join('config', 'server.crt'))
 };
 
-const app = express().use(bodyParser.json()).use('/', router());
+const app = express().use(bodyParser.json());
+createRouter(app)
 
 const httpPort = 3000;
 http.createServer(app).listen(httpPort, () => {
