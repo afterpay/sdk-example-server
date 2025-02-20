@@ -96,3 +96,5 @@ typings/
 
 # Ignore built ts files
 dist/**/*
+/.idea/
+package-lock.json
