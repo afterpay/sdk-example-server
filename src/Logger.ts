@@ -4,7 +4,7 @@ dotenv.config({ override: true });
 type LogLevel = 'LOG' | 'DEBUG' | 'INFO' | 'WARN' | 'ERROR';
 const logLevel = (process.env.LOG_LEVEL as LogLevel) || 'WARN';
 
-const logLevelMappping: Record<LogLevel, number> = {
+const logLevelMapping: Record<LogLevel, number> = {
   LOG: 0,
   DEBUG: 1,
   INFO: 2,
@@ -43,7 +43,7 @@ export class LOGGER {
 
   static isUnderLogLevel(typeLevel: LogLevel): boolean {
     return (
-      logLevelMappping[typeLevel] >= logLevelMappping[logLevel] || logLevelMappping[typeLevel] === 0
+      logLevelMapping[typeLevel] >= logLevelMapping[logLevel] || logLevelMapping[typeLevel] === 0
     );
   }
 

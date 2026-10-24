@@ -16,7 +16,7 @@ export const get: Handler = async (_req, res) => {
   const configRequest = HttpClient.request(configOptions, (configRes) => {
     configRes.on('data', (d) => {
       const responseObject = JSON.parse(d);
-      LOGGER.info('Checkout response', responseObject);
+      LOGGER.info('Configuration response', responseObject);
 
       res.json({
         ...responseObject,
